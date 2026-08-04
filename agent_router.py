@@ -7,6 +7,13 @@ from sklearn.pipeline import Pipeline
 
 # 每个元组代表一条训练样本：
 # 第一个元素是用户问题，第二个元素是人工标注的正确类别。
+# samples：列表 list
+# ├── 第 0 项：元组 tuple
+# │   ├── 第 0 项："退款多久到账"
+# │   └── 第 1 项："knowledge"
+# └── 第 1 项：元组 tuple
+#     ├── 第 0 项："帮我取消订单"
+#     └── 第 1 项："action"
 samples = [
     ("退款一般多久到账", "knowledge"),
     ("忘记密码应该怎么办", "knowledge"),
@@ -18,6 +25,8 @@ samples = [
     ("运费是如何计算的", "knowledge"),
     ("运费的阶梯公式是什么", "knowledge"),
     ("有哪些基本会员", "knowledge"),
+    ("订阅操作教程有哪些", "knowledge"),
+    ("驾驶员驾车有哪些基本流程", "knowledge"),
 
     ("帮我查询订单状态", "action"),
     ("取消我的订单", "action"),
@@ -33,7 +42,7 @@ samples = [
 
 
 # 将问题和标签分别取出来。
-texts = [sample[0] for sample in samples]
+texts = [sample[0] for sample in samples]   #列表推导式
 labels = [sample[1] for sample in samples]
 
 
@@ -43,11 +52,11 @@ train_texts, test_texts, train_labels, test_labels = train_test_split(
     texts,
     labels,
     test_size=0.25,       # 25% 的数据作为测试集
-    random_state=42,      # 固定随机结果，方便重复实验
+    random_state=47,      # 固定随机结果，方便重复实验
     stratify=labels,      # 保证两种标签都出现在训练集和测试集中
 )
 
-
+# Sklearn Pipeline 机器学习预处理流水线
 # Pipeline 会依次执行两个步骤：
 # 1. 将中文文本转换成 TF-IDF 数字特征。
 # 2. 使用逻辑回归学习这些特征与标签之间的关系。
@@ -92,7 +101,7 @@ for text, expected, predicted in zip(
 new_questions = [
     "会员订阅规则是什么",
     "帮我预定早上九点的机票",
-    "给我定位实时位置",
+    "给我定位实时位置的教程",
 ]
 
 new_predictions = model.predict(new_questions)
