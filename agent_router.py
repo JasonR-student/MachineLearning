@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score    #进入 sklearn.metrics 模块，找到名为 accuracy_score 的函数，把它放进当前程序，并使用 accuracy_score 这个名字
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
@@ -52,7 +52,7 @@ train_texts, test_texts, train_labels, test_labels = train_test_split(
     texts,
     labels,
     test_size=0.25,       # 25% 的数据作为测试集
-    random_state=47,      # 固定随机结果，方便重复实验
+    random_state=42,      # 固定随机结果，方便重复实验
     stratify=labels,      # 保证两种标签都出现在训练集和测试集中
 )
 
