@@ -1,0 +1,12 @@
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+.virtual_documents/
+
+# 系统文件
+.DS_Store
+Thumbs.db
